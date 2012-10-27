@@ -52,25 +52,43 @@ namespace Quickzy
             Random random = new Random();
             for (int i = 0; i < selectedIndexes.Length; i++)
             {
-                bool alreadyChoosen;
-                do
-                {
-                    alreadyChoosen = false;
-                    int choosingRandomCandidate = random.Next(0, items.Count);
-                    for (int j = 0; j < i; j++) // Выбирание случайных кандидатов и проверка - не одинаковы ли они
-                    {
-                        if (selectedIndexes[j] == choosingRandomCandidate)
-                        {
-                            alreadyChoosen = true;
-                            break;
-                        }
-                    }
-                } while (alreadyChoosen);
+                selectedIndexes[i] = FindNextSelectedIndex(random, i);
             }
             int correctIndexInSelectedIndexes = random.Next(0, selectedIndexes.Length);
             correctItemIndex = selectedIndexes[correctIndexInSelectedIndexes];
         }
 
+        private int FindNextSelectedIndex(Random random, int i)
+        {
+            int choosingRandomCandidate;
+            bool alreadyChoosen;
+            do
+            {
+                alreadyChoosen = false;
+                choosingRandomCandidate = random.Next(0, items.Count);
+                for (int j = 0; j < i; j++) // Выбирание случайных кандидатов и проверка - не одинаковы ли они
+                {
+                    if (selectedIndexes[j] == choosingRandomCandidate)
+                    {
+                        alreadyChoosen = true;
+                        break;
+                    }
+                }
+            } while (alreadyChoosen);
+            return choosingRandomCandidate;
+        }
+
+        /* Типо Папино
+        private int FindNextSelectedIndex2(Random random, int i)
+        {
+            int choosingRandomCandidate;
+            do
+            {
+                choosingRandomCandidate = random.Next(0, items.Count);
+            } while (selectedIndexes.Take(i).Contains(choosingRandomCandidate));
+            return choosingRandomCandidate;
+        }
+         */
 
         private void LoadItems(string imagePath)
         {
