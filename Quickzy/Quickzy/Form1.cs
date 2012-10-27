@@ -24,10 +24,15 @@ namespace Quickzy
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            LoadItemsFromFolder();              // Считываем файлы
+            SelectCandidates();                 // Выбираем случайные и правильный из них
+            ShowImage();                        // Загружаем картинку
+            UpdateRadioButtons();               // Обновляем варианты
+        }
+
+        private void LoadItemsFromFolder()
+        {
             LoadItems(@"..\..\Images\Машины");
-            SelectCandidates();
-            ShowImage();
-            UpdateRadioButtons();
         }
 
         private void ShowImage()
@@ -47,11 +52,25 @@ namespace Quickzy
             Random random = new Random();
             for (int i = 0; i < selectedIndexes.Length; i++)
             {
-                selectedIndexes[i] = random.Next(0, items.Count);
+                bool alreadyChoosen;
+                do
+                {
+                    alreadyChoosen = false;
+                    int choosingRandomCandidate = random.Next(0, items.Count);
+                    for (int j = 0; j < i; j++) // Выбирание случайных кандидатов и проверка - не одинаковы ли они
+                    {
+                        if (selectedIndexes[j] == choosingRandomCandidate)
+                        {
+                            alreadyChoosen = true;
+                            break;
+                        }
+                    }
+                } while (alreadyChoosen);
             }
             int correctIndexInSelectedIndexes = random.Next(0, selectedIndexes.Length);
             correctItemIndex = selectedIndexes[correctIndexInSelectedIndexes];
         }
+
 
         private void LoadItems(string imagePath)
         {
