@@ -35,12 +35,12 @@
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblTotalAnswers = new System.Windows.Forms.ToolStripStatusLabel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.bAnswer3 = new System.Windows.Forms.Button();
+            this.bAnswer2 = new System.Windows.Forms.Button();
+            this.bAnswer1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pbImage = new System.Windows.Forms.PictureBox();
-            this.bAnswer1 = new System.Windows.Forms.Button();
-            this.bAnswer2 = new System.Windows.Forms.Button();
-            this.bAnswer3 = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -99,6 +99,38 @@
             this.panel2.Size = new System.Drawing.Size(200, 440);
             this.panel2.TabIndex = 2;
             // 
+            // bAnswer3
+            // 
+            this.bAnswer3.Location = new System.Drawing.Point(28, 154);
+            this.bAnswer3.Name = "bAnswer3";
+            this.bAnswer3.Size = new System.Drawing.Size(138, 25);
+            this.bAnswer3.TabIndex = 9;
+            this.bAnswer3.TabStop = false;
+            this.bAnswer3.Text = "TV";
+            this.bAnswer3.UseVisualStyleBackColor = true;
+            this.bAnswer3.Click += new System.EventHandler(this.bAnswer3_Click);
+            // 
+            // bAnswer2
+            // 
+            this.bAnswer2.Location = new System.Drawing.Point(28, 123);
+            this.bAnswer2.Name = "bAnswer2";
+            this.bAnswer2.Size = new System.Drawing.Size(138, 25);
+            this.bAnswer2.TabIndex = 8;
+            this.bAnswer2.TabStop = false;
+            this.bAnswer2.Text = "Printer";
+            this.bAnswer2.UseVisualStyleBackColor = true;
+            this.bAnswer2.Click += new System.EventHandler(this.bAnswer2_Click);
+            // 
+            // bAnswer1
+            // 
+            this.bAnswer1.Location = new System.Drawing.Point(28, 92);
+            this.bAnswer1.Name = "bAnswer1";
+            this.bAnswer1.Size = new System.Drawing.Size(138, 25);
+            this.bAnswer1.TabIndex = 7;
+            this.bAnswer1.TabStop = false;
+            this.bAnswer1.Text = "Computer";
+            this.bAnswer1.UseVisualStyleBackColor = true;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -133,35 +165,6 @@
             this.pbImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbImage.TabIndex = 0;
             this.pbImage.TabStop = false;
-            // 
-            // bAnswer1
-            // 
-            this.bAnswer1.Location = new System.Drawing.Point(28, 92);
-            this.bAnswer1.Name = "bAnswer1";
-            this.bAnswer1.Size = new System.Drawing.Size(138, 25);
-            this.bAnswer1.TabIndex = 7;
-            this.bAnswer1.Text = "Computer";
-            this.bAnswer1.UseVisualStyleBackColor = true;
-            // 
-            // bAnswer2
-            // 
-            this.bAnswer2.Location = new System.Drawing.Point(28, 123);
-            this.bAnswer2.Name = "bAnswer2";
-            this.bAnswer2.Size = new System.Drawing.Size(138, 25);
-            this.bAnswer2.TabIndex = 8;
-            this.bAnswer2.Text = "Printer";
-            this.bAnswer2.UseVisualStyleBackColor = true;
-            this.bAnswer2.Click += new System.EventHandler(this.bAnswer2_Click);
-            // 
-            // bAnswer3
-            // 
-            this.bAnswer3.Location = new System.Drawing.Point(28, 154);
-            this.bAnswer3.Name = "bAnswer3";
-            this.bAnswer3.Size = new System.Drawing.Size(138, 25);
-            this.bAnswer3.TabIndex = 9;
-            this.bAnswer3.Text = "TV";
-            this.bAnswer3.UseVisualStyleBackColor = true;
-            this.bAnswer3.Click += new System.EventHandler(this.bAnswer3_Click);
             // 
             // Form1
             // 
