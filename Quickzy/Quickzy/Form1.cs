@@ -27,7 +27,7 @@ namespace Quickzy
             LoadItemsFromFolder();              // Считываем файлы
             SelectCandidates();                 // Выбираем случайные и правильный из них
             ShowImage();                        // Загружаем картинку
-            UpdateRadioButtons();               // Обновляем варианты
+                UpdateRadioButtons();               // Обновляем варианты
         }
 
         private void LoadItemsFromFolder()
@@ -42,9 +42,9 @@ namespace Quickzy
 
         private void UpdateRadioButtons()
         {
-            llAnswer1.Text = items[selectedIndexes[0]].Text;
-            llAnswer2.Text = items[selectedIndexes[1]].Text;
-            llAnswer3.Text = items[selectedIndexes[2]].Text;
+            bAnswer1.Text = items[selectedIndexes[0]].Text;
+            bAnswer2.Text = items[selectedIndexes[1]].Text;
+            bAnswer3.Text = items[selectedIndexes[2]].Text;
         }
 
         private void SelectCandidates()
@@ -66,7 +66,7 @@ namespace Quickzy
             {
                 alreadyChoosen = false;
                 choosingRandomCandidate = random.Next(0, items.Count);
-                for (int j = 0; j < i; j++) // Выбирание случайных кандидатов и проверка - не одинаковы ли они
+                for (int j = 0; j < i; j++)         // Выбирание случайных кандидатов и проверка - не одинаковы ли они
                 {
                     if (selectedIndexes[j] == choosingRandomCandidate)
                     {
@@ -106,6 +106,26 @@ namespace Quickzy
         private string GetTextFromFileName(string fileName)
         {
             return Path.GetFileNameWithoutExtension(fileName);
+        }
+
+        private void bAnswer2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
+        }
+
+        private void bAnswer3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
+        }
+
+        private void bAnswer3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void bAnswer2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

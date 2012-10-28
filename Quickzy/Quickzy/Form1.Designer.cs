@@ -38,9 +38,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pbImage = new System.Windows.Forms.PictureBox();
-            this.llAnswer1 = new System.Windows.Forms.LinkLabel();
-            this.llAnswer2 = new System.Windows.Forms.LinkLabel();
-            this.llAnswer3 = new System.Windows.Forms.LinkLabel();
+            this.bAnswer1 = new System.Windows.Forms.Button();
+            this.bAnswer2 = new System.Windows.Forms.Button();
+            this.bAnswer3 = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -88,9 +88,9 @@
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.llAnswer3);
-            this.panel2.Controls.Add(this.llAnswer2);
-            this.panel2.Controls.Add(this.llAnswer1);
+            this.panel2.Controls.Add(this.bAnswer3);
+            this.panel2.Controls.Add(this.bAnswer2);
+            this.panel2.Controls.Add(this.bAnswer1);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel2.Location = new System.Drawing.Point(657, 0);
@@ -134,35 +134,34 @@
             this.pbImage.TabIndex = 0;
             this.pbImage.TabStop = false;
             // 
-            // llAnswer1
+            // bAnswer1
             // 
-            this.llAnswer1.AutoSize = true;
-            this.llAnswer1.Location = new System.Drawing.Point(27, 111);
-            this.llAnswer1.Name = "llAnswer1";
-            this.llAnswer1.Size = new System.Drawing.Size(21, 13);
-            this.llAnswer1.TabIndex = 4;
-            this.llAnswer1.TabStop = true;
-            this.llAnswer1.Text = "TV";
+            this.bAnswer1.Location = new System.Drawing.Point(28, 92);
+            this.bAnswer1.Name = "bAnswer1";
+            this.bAnswer1.Size = new System.Drawing.Size(138, 25);
+            this.bAnswer1.TabIndex = 7;
+            this.bAnswer1.Text = "Computer";
+            this.bAnswer1.UseVisualStyleBackColor = true;
             // 
-            // llAnswer2
+            // bAnswer2
             // 
-            this.llAnswer2.AutoSize = true;
-            this.llAnswer2.Location = new System.Drawing.Point(27, 158);
-            this.llAnswer2.Name = "llAnswer2";
-            this.llAnswer2.Size = new System.Drawing.Size(52, 13);
-            this.llAnswer2.TabIndex = 5;
-            this.llAnswer2.TabStop = true;
-            this.llAnswer2.Text = "Computer";
+            this.bAnswer2.Location = new System.Drawing.Point(28, 123);
+            this.bAnswer2.Name = "bAnswer2";
+            this.bAnswer2.Size = new System.Drawing.Size(138, 25);
+            this.bAnswer2.TabIndex = 8;
+            this.bAnswer2.Text = "Printer";
+            this.bAnswer2.UseVisualStyleBackColor = true;
+            this.bAnswer2.Click += new System.EventHandler(this.bAnswer2_Click);
             // 
-            // llAnswer3
+            // bAnswer3
             // 
-            this.llAnswer3.AutoSize = true;
-            this.llAnswer3.Location = new System.Drawing.Point(27, 205);
-            this.llAnswer3.Name = "llAnswer3";
-            this.llAnswer3.Size = new System.Drawing.Size(37, 13);
-            this.llAnswer3.TabIndex = 6;
-            this.llAnswer3.TabStop = true;
-            this.llAnswer3.Text = "Printer";
+            this.bAnswer3.Location = new System.Drawing.Point(28, 154);
+            this.bAnswer3.Name = "bAnswer3";
+            this.bAnswer3.Size = new System.Drawing.Size(138, 25);
+            this.bAnswer3.TabIndex = 9;
+            this.bAnswer3.Text = "TV";
+            this.bAnswer3.UseVisualStyleBackColor = true;
+            this.bAnswer3.Click += new System.EventHandler(this.bAnswer3_Click);
             // 
             // Form1
             // 
@@ -200,9 +199,9 @@
         private System.Windows.Forms.ToolStripStatusLabel lblCorrectAnswers;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
         private System.Windows.Forms.ToolStripStatusLabel lblTotalAnswers;
-        private System.Windows.Forms.LinkLabel llAnswer3;
-        private System.Windows.Forms.LinkLabel llAnswer2;
-        private System.Windows.Forms.LinkLabel llAnswer1;
+        private System.Windows.Forms.Button bAnswer3;
+        private System.Windows.Forms.Button bAnswer2;
+        private System.Windows.Forms.Button bAnswer1;
 
     }
 }
