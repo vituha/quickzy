@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -42,6 +43,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pbImage = new System.Windows.Forms.PictureBox();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.statusStrip1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -120,6 +122,7 @@
             this.bAnswer3.TabStop = false;
             this.bAnswer3.Text = "TV";
             this.bAnswer3.UseVisualStyleBackColor = true;
+            this.bAnswer3.Click += new System.EventHandler(this.bAnswer3_Click);
             // 
             // bAnswer2
             // 
@@ -130,6 +133,7 @@
             this.bAnswer2.TabStop = false;
             this.bAnswer2.Text = "Printer";
             this.bAnswer2.UseVisualStyleBackColor = true;
+            this.bAnswer2.Click += new System.EventHandler(this.bAnswer2_Click);
             // 
             // bAnswer1
             // 
@@ -140,6 +144,7 @@
             this.bAnswer1.TabStop = false;
             this.bAnswer1.Text = "Computer";
             this.bAnswer1.UseVisualStyleBackColor = true;
+            this.bAnswer1.Click += new System.EventHandler(this.bAnswer1_Click);
             // 
             // label1
             // 
@@ -216,6 +221,7 @@
         private System.Windows.Forms.Button bAnswer2;
         private System.Windows.Forms.Button bAnswer1;
         private System.Windows.Forms.ComboBox cbFolder;
+        private System.Windows.Forms.Timer timer1;
 
     }
 }
