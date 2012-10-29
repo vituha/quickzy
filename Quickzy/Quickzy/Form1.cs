@@ -21,6 +21,8 @@ namespace Quickzy
         private int[] selectedIndexes = new int[3];
         private int correctItemIndex;
 
+        private Random random = new Random();
+
         public Form1()
         {
             InitializeComponent();
@@ -62,7 +64,6 @@ namespace Quickzy
 
         private void SelectCandidates()
         {
-            Random random = new Random();
             for (int i = 0; i < selectedIndexes.Length; i++)
             {
                 selectedIndexes[i] = FindNextSelectedIndex(random, i);
@@ -137,23 +138,23 @@ namespace Quickzy
 
         private void bAnswer1_Click(object sender, EventArgs e)
         {
-            Refreshing(bAnswer1.Text);
+            Refreshing(0);
         }
 
         private void bAnswer2_Click(object sender, EventArgs e)
         {
-            Refreshing(bAnswer2.Text);
+            Refreshing(1);
         }
 
         private void bAnswer3_Click(object sender, EventArgs e)
         {
-            Refreshing(bAnswer3.Text);
+            Refreshing(2);
         }
 
 
-        private void Refreshing(string textFromThisButton)
+        private void Refreshing(int answer)
         {
-            if (items[correctItemIndex].Text == textFromThisButton)
+            if (correctItemIndex == selectedIndexes[answer])
             {
                 nTotal++;
                 nCorrect++;
