@@ -35,7 +35,7 @@ namespace Quickzy
 
         private void LoadFolders()
         {
-            string FoldersDirectory = @"..\..\Images";
+            string FoldersDirectory = @"Images";
             foreach (string folderPath in Directory.EnumerateDirectories(FoldersDirectory))
             {
                 Folder folder = new Folder
@@ -111,7 +111,7 @@ namespace Quickzy
             {
                 Item item = new Item
                 {
-                    FileName = imagePath + @"\" + fileName,
+                    FileName = fileName,
                     Text = GetTextFromFileName(fileName)
                 };
                 items.Add(item);
