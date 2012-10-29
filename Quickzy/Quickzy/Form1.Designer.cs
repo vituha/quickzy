@@ -35,6 +35,7 @@
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblTotalAnswers = new System.Windows.Forms.ToolStripStatusLabel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.cbFolder = new System.Windows.Forms.ComboBox();
             this.bAnswer3 = new System.Windows.Forms.Button();
             this.bAnswer2 = new System.Windows.Forms.Button();
             this.bAnswer1 = new System.Windows.Forms.Button();
@@ -88,6 +89,7 @@
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.cbFolder);
             this.panel2.Controls.Add(this.bAnswer3);
             this.panel2.Controls.Add(this.bAnswer2);
             this.panel2.Controls.Add(this.bAnswer1);
@@ -99,6 +101,16 @@
             this.panel2.Size = new System.Drawing.Size(200, 440);
             this.panel2.TabIndex = 2;
             // 
+            // cbFolder
+            // 
+            this.cbFolder.Dock = System.Windows.Forms.DockStyle.Top;
+            this.cbFolder.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbFolder.Location = new System.Drawing.Point(0, 0);
+            this.cbFolder.Name = "cbFolder";
+            this.cbFolder.Size = new System.Drawing.Size(198, 21);
+            this.cbFolder.TabIndex = 10;
+            this.cbFolder.SelectedValueChanged += new System.EventHandler(this.cbFolder_SelectedValueChanged);
+            // 
             // bAnswer3
             // 
             this.bAnswer3.Location = new System.Drawing.Point(28, 154);
@@ -108,7 +120,6 @@
             this.bAnswer3.TabStop = false;
             this.bAnswer3.Text = "TV";
             this.bAnswer3.UseVisualStyleBackColor = true;
-            this.bAnswer3.Click += new System.EventHandler(this.bAnswer3_Click);
             // 
             // bAnswer2
             // 
@@ -119,7 +130,6 @@
             this.bAnswer2.TabStop = false;
             this.bAnswer2.Text = "Printer";
             this.bAnswer2.UseVisualStyleBackColor = true;
-            this.bAnswer2.Click += new System.EventHandler(this.bAnswer2_Click);
             // 
             // bAnswer1
             // 
@@ -205,6 +215,7 @@
         private System.Windows.Forms.Button bAnswer3;
         private System.Windows.Forms.Button bAnswer2;
         private System.Windows.Forms.Button bAnswer1;
+        private System.Windows.Forms.ComboBox cbFolder;
 
     }
 }
