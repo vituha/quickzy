@@ -86,7 +86,7 @@
             // 
             this.lblTotalAnswers.Name = "lblTotalAnswers";
             this.lblTotalAnswers.Size = new System.Drawing.Size(13, 17);
-            this.lblTotalAnswers.Text = "1";
+            this.lblTotalAnswers.Text = "0";
             // 
             // panel2
             // 
