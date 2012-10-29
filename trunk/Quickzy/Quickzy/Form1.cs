@@ -13,6 +13,7 @@ namespace Quickzy
 {
     public partial class Form1 : Form
     {
+        private List<Folder> folders = new List<Folder>();
         private readonly List<Item> items = new List<Item>();
         private int[] selectedIndexes = new int[3];
         private int correctItemIndex;
@@ -24,15 +25,24 @@ namespace Quickzy
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            LoadItemsFromFolder();              // Считываем файлы
-            SelectCandidates();                 // Выбираем случайные и правильный из них
-            ShowImage();                        // Загружаем картинку
-                UpdateRadioButtons();               // Обновляем варианты
+            LoadFolders();                      // Cчитываем папки
         }
 
-        private void LoadItemsFromFolder()
+        private void LoadFolders()
         {
-            LoadItems(@"..\..\Images\Машины");
+            string FoldersDirectory = @"..\..\Images";
+            foreach (string folderPath in Directory.EnumerateDirectories(FoldersDirectory))
+	        {
+                Folder folder = new Folder
+                {
+                    FolderPath = folderPath,
+                    FolderName = Path.GetFileName(folderPath)
+                };
+                folders.Add(folder);
+            }
+            cbFolder.DisplayMember = "FolderName";
+            cbFolder.ValueMember = "FolderPath";
+            cbFolder.DataSource = folders;
         }
 
         private void ShowImage()
@@ -40,7 +50,7 @@ namespace Quickzy
             pbImage.ImageLocation = items[correctItemIndex].FileName;
         }
 
-        private void UpdateRadioButtons()
+        private void UpdateAnswerButtons()
         {
             bAnswer1.Text = items[selectedIndexes[0]].Text;
             bAnswer2.Text = items[selectedIndexes[1]].Text;
@@ -92,6 +102,7 @@ namespace Quickzy
 
         private void LoadItems(string imagePath)
         {
+            items.Clear();
             foreach (string fileName in Directory.EnumerateFiles(imagePath))
             {
                 Item item = new Item
@@ -108,24 +119,17 @@ namespace Quickzy
             return Path.GetFileNameWithoutExtension(fileName);
         }
 
-        private void bAnswer2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void cbFolder_SelectedValueChanged(object sender, EventArgs e)
         {
-
-        }
-
-        private void bAnswer3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-
-        }
-
-        private void bAnswer3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void bAnswer2_Click(object sender, EventArgs e)
-        {
-
+            string selectedFolderPath = (string)cbFolder.SelectedValue;
+            if (selectedFolderPath == null)
+            {
+                return;
+            }
+            LoadItems(selectedFolderPath);
+            SelectCandidates();
+            ShowImage();
+            UpdateAnswerButtons();
         }
     }
 }
