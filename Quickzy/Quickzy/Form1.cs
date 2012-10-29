@@ -11,8 +11,11 @@ using System.Diagnostics;
 
 namespace Quickzy
 {
+
     public partial class Form1 : Form
     {
+        int nTotal = 0;
+        int nCorrect = 0;
         private List<Folder> folders = new List<Folder>();
         private readonly List<Item> items = new List<Item>();
         private int[] selectedIndexes = new int[3];
@@ -25,14 +28,14 @@ namespace Quickzy
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            LoadFolders();                      // Cчитываем папки
+            LoadFolders();   // Cчитываем папки
         }
 
         private void LoadFolders()
         {
             string FoldersDirectory = @"..\..\Images";
             foreach (string folderPath in Directory.EnumerateDirectories(FoldersDirectory))
-	        {
+            {
                 Folder folder = new Folder
                 {
                     FolderPath = folderPath,
@@ -131,5 +134,46 @@ namespace Quickzy
             ShowImage();
             UpdateAnswerButtons();
         }
+
+        private void bAnswer1_Click(object sender, EventArgs e)
+        {
+            Refreshing(bAnswer1.Text);
+        }
+
+        private void bAnswer2_Click(object sender, EventArgs e)
+        {
+            Refreshing(bAnswer2.Text);
+        }
+
+        private void bAnswer3_Click(object sender, EventArgs e)
+        {
+            Refreshing(bAnswer3.Text);
+        }
+
+
+        private void Refreshing(string textFromThisButton)
+        {
+            if (items[correctItemIndex].Text == textFromThisButton)
+            {
+                nTotal++;
+                nCorrect++;
+                SelectCandidates();
+                ShowImage();
+                UpdateAnswerButtons();
+
+            }
+            else
+            {
+                nTotal++;
+                SelectCandidates();
+                ShowImage();
+                UpdateAnswerButtons();
+            }
+            lblCorrectAnswers.Text = nCorrect.ToString();
+            lblTotalAnswers.Text = nTotal.ToString();
+        }
     }
 }
+
+
+
