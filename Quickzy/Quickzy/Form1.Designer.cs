@@ -44,6 +44,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.pbImage = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.statusStrip1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -194,6 +195,7 @@
             this.MinimumSize = new System.Drawing.Size(800, 500);
             this.Name = "Form1";
             this.Text = "Quickzy ;)";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
@@ -222,6 +224,7 @@
         private System.Windows.Forms.Button bAnswer1;
         private System.Windows.Forms.ComboBox cbFolder;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.HelpProvider helpProvider1;
 
     }
 }
