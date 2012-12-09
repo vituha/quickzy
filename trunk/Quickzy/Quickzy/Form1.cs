@@ -22,7 +22,6 @@ namespace Quickzy
         private int correctItemIndex;
 
         private Random random = new Random();
-
         public Form1()
         {
             InitializeComponent();
@@ -30,21 +29,27 @@ namespace Quickzy
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            LoadFolders();   // Cчитываем папки
+            using (var settingForm = new Form2())
+            {
+                if(DialogResult.Cancel == settingForm.ShowDialog())
+                {
+                    Close();
+                    return;
+                }
+            }
+            LoadFolders();
         }
 
         private void LoadFolders()
         {
-            string FoldersDirectory = @"Images";
-            foreach (string folderPath in Directory.EnumerateDirectories(FoldersDirectory))
+            string FoldersDirectory = @"..\Quickzy_Prog\Images";
+            string folderPath = Directory.EnumerateDirectories(FoldersDirectory).First();
+            Folder folder = new Folder
             {
-                Folder folder = new Folder
-                {
-                    FolderPath = folderPath,
-                    FolderName = Path.GetFileName(folderPath)
-                };
-                folders.Add(folder);
-            }
+                FolderPath = folderPath,
+                FolderName = Path.GetFileName(folderPath)
+            };
+            folders.Add(folder);
             cbFolder.DisplayMember = "FolderName";
             cbFolder.ValueMember = "FolderPath";
             cbFolder.DataSource = folders;
@@ -173,6 +178,24 @@ namespace Quickzy
             lblCorrectAnswers.Text = nCorrect.ToString();
             lblTotalAnswers.Text = nTotal.ToString();
         }
+
+        private void Form1_Deactivate(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            string tempFolder = @"..\Quickzy_Prog\Images";
+            foreach (string folder in Directory.EnumerateDirectories(tempFolder))
+            {
+                Directory.Delete(folder, true);
+            }
+        }
+
+
+
+
     }
 }
 
