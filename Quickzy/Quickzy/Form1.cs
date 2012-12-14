@@ -20,6 +20,7 @@ namespace Quickzy
         private readonly List<Item> items = new List<Item>();
         private int[] selectedIndexes = new int[3];
         private int correctItemIndex;
+        int nOfQuestions;
 
         private Random random = new Random();
         public Form1()
@@ -31,19 +32,19 @@ namespace Quickzy
         {
             using (var settingForm = new Form2())
             {
-                if(DialogResult.Cancel == settingForm.ShowDialog())
+                if (DialogResult.Cancel == settingForm.ShowDialog())
                 {
                     Close();
                     return;
                 }
             }
-            SettingsApply();
+
             LoadFolders();
+            SettingsApply();
         }
 
         private void SettingsApply()
         {
-            int nOfQuestions;
             TimeSpan maxDuration;
 
             string settingsPath = @"..\Quickzy_Prog\settings.txt";
@@ -54,9 +55,9 @@ namespace Quickzy
                 maxDuration = TimeSpan.FromSeconds(int.Parse(reader.ReadLine()));
                 file.Close();
             }
-            if (nOfQuestions == nCorrect)
+            if (nOfQuestions == nTotal)
             {
-
+                pnlResults.Focus();
             }
             
         }
@@ -74,6 +75,10 @@ namespace Quickzy
             cbFolder.DisplayMember = "FolderName";
             cbFolder.ValueMember = "FolderPath";
             cbFolder.DataSource = folders;
+            LoadItems(folderPath);
+            SelectCandidates();
+            ShowImage();
+            UpdateAnswerButtons();
         }
 
         private void ShowImage()
@@ -118,10 +123,10 @@ namespace Quickzy
             return choosingRandomCandidate;
         }
 
-        private void LoadItems(string imagePath)
+        private void LoadItems(string folderPath)
         {
             items.Clear();
-            foreach (string fileName in Directory.EnumerateFiles(imagePath))
+            foreach (string fileName in Directory.EnumerateFiles(folderPath))
             {
                 Item item = new Item
                 {
@@ -135,19 +140,6 @@ namespace Quickzy
         private string GetTextFromFileName(string fileName)
         {
             return Path.GetFileNameWithoutExtension(fileName);
-        }
-
-        private void cbFolder_SelectedValueChanged(object sender, EventArgs e)
-        {
-            string selectedFolderPath = (string)cbFolder.SelectedValue;
-            if (selectedFolderPath == null)
-            {
-                return;
-            }
-            LoadItems(selectedFolderPath);
-            SelectCandidates();
-            ShowImage();
-            UpdateAnswerButtons();
         }
 
         private void bAnswer1_Click(object sender, EventArgs e)
@@ -164,7 +156,6 @@ namespace Quickzy
         {
             Refreshing(2);
         }
-
 
         private void Refreshing(int answer)
         {
@@ -186,11 +177,13 @@ namespace Quickzy
             }
             lblCorrectAnswers.Text = nCorrect.ToString();
             lblTotalAnswers.Text = nTotal.ToString();
-        }
 
-        private void Form1_Deactivate(object sender, EventArgs e)
-        {
-
+            if (nOfQuestions == nTotal)
+            {
+                lblResultCorrect.Text = lblCorrectAnswers.Text;
+                lblResultTotal.Text = lblTotalAnswers.Text;
+                pnlQuestions.Visible = false;
+            }
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
@@ -200,7 +193,7 @@ namespace Quickzy
             foreach (string folder in Directory.EnumerateDirectories(tempFolder))
             {
                 Directory.Delete(folder, true);
-                // File.Delete(tempFile);
+                File.Delete(tempFile);
             }
         }
 
