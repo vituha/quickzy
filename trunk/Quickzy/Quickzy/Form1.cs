@@ -37,7 +37,28 @@ namespace Quickzy
                     return;
                 }
             }
+            SettingsApply();
             LoadFolders();
+        }
+
+        private void SettingsApply()
+        {
+            int nOfQuestions;
+            TimeSpan maxDuration;
+
+            string settingsPath = @"..\Quickzy_Prog\settings.txt";
+            using (var file = File.Open(settingsPath, FileMode.Open, FileAccess.Read, FileShare.Read))
+            using (var reader = new StreamReader(file))
+            {
+                nOfQuestions = int.Parse(reader.ReadLine());
+                maxDuration = TimeSpan.FromSeconds(int.Parse(reader.ReadLine()));
+                file.Close();
+            }
+            if (nOfQuestions == nCorrect)
+            {
+
+            }
+            
         }
 
         private void LoadFolders()
@@ -96,18 +117,6 @@ namespace Quickzy
             } while (alreadyChoosen);
             return choosingRandomCandidate;
         }
-
-        /* Типо Папино
-        private int FindNextSelectedIndex2(Random random, int i)
-        {
-            int choosingRandomCandidate;
-            do
-            {
-                choosingRandomCandidate = random.Next(0, items.Count);
-            } while (selectedIndexes.Take(i).Contains(choosingRandomCandidate));
-            return choosingRandomCandidate;
-        }
-         */
 
         private void LoadItems(string imagePath)
         {
@@ -187,9 +196,11 @@ namespace Quickzy
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
             string tempFolder = @"..\Quickzy_Prog\Images";
+            string tempFile = @"..\Quickzy_Prog\settings.txt";
             foreach (string folder in Directory.EnumerateDirectories(tempFolder))
             {
                 Directory.Delete(folder, true);
+                // File.Delete(tempFile);
             }
         }
 
