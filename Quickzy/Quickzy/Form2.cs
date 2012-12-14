@@ -14,6 +14,7 @@ namespace Quickzy
     {
         private List<Folder> folders = new List<Folder>();
         private readonly List<Item> items = new List<Item>();
+        
         public Form2()
         {
             InitializeComponent();
@@ -23,6 +24,7 @@ namespace Quickzy
         {
             LoadFolders();
         }
+        
         private void LoadFolders()
         {
             string FoldersDirectory = @"Images";
@@ -42,6 +44,28 @@ namespace Quickzy
 
         private void bOK_Click(object sender, EventArgs e)
         {
+
+            ChooseSubject();
+            SetNumberOfQuestionsTime();
+
+        }
+
+        private void SetNumberOfQuestionsTime()
+        {
+            string filePath = @"..\Quickzy_Prog\settings.txt";
+            using (var file = File.Open(filePath, FileMode.OpenOrCreate, FileAccess.Write, FileShare.None))
+            {
+                using (var writer = new StreamWriter(file))
+                {
+                    writer.WriteLine(tbNumberOfQuestions.Text);
+                    writer.WriteLine(tbTime.Text);
+                }
+                file.Close();
+            }
+        }
+
+        private void ChooseSubject()
+        {
             string sourceFolder = cbSubject.SelectedValue.ToString() + @"\";
             string destinationFolder = @"..\Quickzy_Prog\" + cbSubject.SelectedValue + @"\";
             if (Directory.Exists(destinationFolder))
@@ -54,14 +78,9 @@ namespace Quickzy
                 string fileName = Path.GetFileName(file);
                 File.Copy(sourceFolder + fileName, destinationFolder + fileName);
             }
-
         }
-
-
-
 
     }
 }
-
 
 
