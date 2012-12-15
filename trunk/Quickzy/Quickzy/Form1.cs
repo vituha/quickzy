@@ -18,7 +18,7 @@ namespace Quickzy
         int nCorrect = 0;
         private List<Folder> folders = new List<Folder>();
         private readonly List<Item> items = new List<Item>();
-        private int[] selectedIndexes = new int[3];
+        private int[] selectedIndexes = new int[5];
         private int correctItemIndex;
         int nOfQuestions;
 
@@ -55,11 +55,8 @@ namespace Quickzy
                 maxDuration = TimeSpan.FromSeconds(int.Parse(reader.ReadLine()));
                 file.Close();
             }
-            if (nOfQuestions == nTotal)
-            {
-                pnlResults.Focus();
-            }
-            
+            timerQuestions.Interval = (int)maxDuration.TotalMilliseconds;
+            timerQuestions.Enabled = true;
         }
 
         private void LoadFolders()
@@ -91,6 +88,8 @@ namespace Quickzy
             bAnswer1.Text = items[selectedIndexes[0]].Text;
             bAnswer2.Text = items[selectedIndexes[1]].Text;
             bAnswer3.Text = items[selectedIndexes[2]].Text;
+            bAnswer4.Text = items[selectedIndexes[3]].Text;
+            bAnswer5.Text = items[selectedIndexes[4]].Text;
         }
 
         private void SelectCandidates()
@@ -195,6 +194,23 @@ namespace Quickzy
                 Directory.Delete(folder, true);
                 File.Delete(tempFile);
             }
+        }
+
+        private void timerQuestions_Tick(object sender, EventArgs e)
+        {
+            lblResultCorrect.Text = lblCorrectAnswers.Text;
+            lblResultTotal.Text = lblTotalAnswers.Text;
+            pnlQuestions.Visible = false;
+        }
+
+        private void bAnswer4_Click(object sender, EventArgs e)
+        {
+            Refreshing(3);
+        }
+
+        private void bAnswer5_Click(object sender, EventArgs e)
+        {
+            Refreshing(4);
         }
 
 

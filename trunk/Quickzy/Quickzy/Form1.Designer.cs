@@ -35,8 +35,7 @@
             this.lblCorrectAnswers = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblTotalAnswers = new System.Windows.Forms.ToolStripStatusLabel();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
+            this.timerQuestions = new System.Windows.Forms.Timer(this.components);
             this.pnlQuestions = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pbImage = new System.Windows.Forms.PictureBox();
@@ -51,6 +50,8 @@
             this.lblResultCorrect = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.lblResultTotal = new System.Windows.Forms.Label();
+            this.bAnswer4 = new System.Windows.Forms.Button();
+            this.bAnswer5 = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
             this.pnlQuestions.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -97,6 +98,10 @@
             this.lblTotalAnswers.Size = new System.Drawing.Size(13, 17);
             this.lblTotalAnswers.Text = "0";
             // 
+            // timerQuestions
+            // 
+            this.timerQuestions.Tick += new System.EventHandler(this.timerQuestions_Tick);
+            // 
             // pnlQuestions
             // 
             this.pnlQuestions.Controls.Add(this.panel1);
@@ -135,6 +140,8 @@
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.bAnswer5);
+            this.panel2.Controls.Add(this.bAnswer4);
             this.panel2.Controls.Add(this.cbFolder);
             this.panel2.Controls.Add(this.bAnswer3);
             this.panel2.Controls.Add(this.bAnswer2);
@@ -259,6 +266,28 @@
             this.lblResultTotal.TabIndex = 3;
             this.lblResultTotal.Text = "TOTAL";
             // 
+            // bAnswer4
+            // 
+            this.bAnswer4.Location = new System.Drawing.Point(28, 185);
+            this.bAnswer4.Name = "bAnswer4";
+            this.bAnswer4.Size = new System.Drawing.Size(138, 25);
+            this.bAnswer4.TabIndex = 11;
+            this.bAnswer4.TabStop = false;
+            this.bAnswer4.Text = "TV";
+            this.bAnswer4.UseVisualStyleBackColor = true;
+            this.bAnswer4.Click += new System.EventHandler(this.bAnswer4_Click);
+            // 
+            // bAnswer5
+            // 
+            this.bAnswer5.Location = new System.Drawing.Point(28, 216);
+            this.bAnswer5.Name = "bAnswer5";
+            this.bAnswer5.Size = new System.Drawing.Size(138, 25);
+            this.bAnswer5.TabIndex = 12;
+            this.bAnswer5.TabStop = false;
+            this.bAnswer5.Text = "TV";
+            this.bAnswer5.UseVisualStyleBackColor = true;
+            this.bAnswer5.Click += new System.EventHandler(this.bAnswer5_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -295,8 +324,7 @@
         private System.Windows.Forms.ToolStripStatusLabel lblCorrectAnswers;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
         private System.Windows.Forms.ToolStripStatusLabel lblTotalAnswers;
-        private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.HelpProvider helpProvider1;
+        private System.Windows.Forms.Timer timerQuestions;
         private System.Windows.Forms.Panel pnlQuestions;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox pbImage;
@@ -311,6 +339,8 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label lblResultCorrect;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button bAnswer5;
+        private System.Windows.Forms.Button bAnswer4;
 
     }
 }
