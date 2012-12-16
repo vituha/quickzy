@@ -21,6 +21,7 @@ namespace Quickzy
         private int[] selectedIndexes = new int[5];
         private int correctItemIndex;
         int nOfQuestions;
+        int num = 0;
 
         private Random random = new Random();
         public Form1()
@@ -73,18 +74,52 @@ namespace Quickzy
             cbFolder.ValueMember = "FolderPath";
             cbFolder.DataSource = folders;
             LoadItems(folderPath);
+            ShuffleItems();
             SelectCandidates();
+            ShuffleCandidates();
             ShowImage();
             UpdateAnswerButtons();
         }
 
+        private void ShuffleCandidates()
+        {
+            Random rnd = new Random();
+            for (int i = 0; i < 1000; i++)
+            {
+                int index = rnd.Next(selectedIndexes.Length);
+                if (index >= 0 && index < 6)
+                {
+                    int tmp = selectedIndexes[0];
+                    selectedIndexes[0] = selectedIndexes[index];
+                    selectedIndexes[index] = tmp;
+
+                }
+            }
+        }
+
+        private void ShuffleItems()
+        {
+            Random rnd = new Random();
+            for (int i = 0; i < 1000; i++)
+            {
+                int index = rnd.Next(items.Count);
+                if (index > 0)
+                {
+                    Item tmp = items[0];
+                    items[0] = items[index];
+                    items[index] = tmp;
+                }
+            }
+        }
+
         private void ShowImage()
         {
-            pbImage.ImageLocation = items[correctItemIndex].FileName;
+            pbImage.ImageLocation = items[num].FileName;
         }
 
         private void UpdateAnswerButtons()
         {
+            ShuffleCandidates();
             bAnswer1.Text = items[selectedIndexes[0]].Text;
             bAnswer2.Text = items[selectedIndexes[1]].Text;
             bAnswer3.Text = items[selectedIndexes[2]].Text;
@@ -94,15 +129,16 @@ namespace Quickzy
 
         private void SelectCandidates()
         {
-            for (int i = 0; i < selectedIndexes.Length; i++)
+            for (int i = 0; i < selectedIndexes.Length - 1; i++)
             {
-                selectedIndexes[i] = FindNextSelectedIndex(random, i);
+                selectedIndexes[i] = FindNextSelectedIndex(i);
             }
             int correctIndexInSelectedIndexes = random.Next(0, selectedIndexes.Length);
             correctItemIndex = selectedIndexes[correctIndexInSelectedIndexes];
+            selectedIndexes[4] = num;
         }
 
-        private int FindNextSelectedIndex(Random random, int i)
+        private int FindNextSelectedIndex(int i)
         {
             int choosingRandomCandidate;
             bool alreadyChoosen;
@@ -114,8 +150,11 @@ namespace Quickzy
                 {
                     if (selectedIndexes[j] == choosingRandomCandidate)
                     {
-                        alreadyChoosen = true;
-                        break;
+                        if (items[num].Text != items[choosingRandomCandidate].Text)
+                        {
+                            alreadyChoosen = true;
+                            break;
+                        }
                     }
                 }
             } while (alreadyChoosen);
@@ -158,8 +197,14 @@ namespace Quickzy
 
         private void Refreshing(int answer)
         {
-            if (correctItemIndex == selectedIndexes[answer])
+            if (items[num].Text == items[selectedIndexes[answer]].Text)
             {
+                num++;
+                if (num == 5)
+                {
+                    num = 0;
+                    ShuffleItems();
+                }
                 nTotal++;
                 nCorrect++;
                 SelectCandidates();
@@ -169,6 +214,12 @@ namespace Quickzy
             }
             else
             {
+                num++;
+                if (num == 5)
+                {
+                    num = 0;
+                    ShuffleItems();
+                }
                 nTotal++;
                 SelectCandidates();
                 ShowImage();
