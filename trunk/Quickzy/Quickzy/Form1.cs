@@ -14,32 +14,25 @@ namespace Quickzy
 
     public partial class Form1 : Form
     {
+        const int numberOfAltenativeAnswers = 5;
+
         int nTotal = 0;
         int nCorrect = 0;
         private List<Folder> folders = new List<Folder>();
         private readonly List<Item> items = new List<Item>();
-        private int[] selectedIndexes = new int[5];
-        private int correctItemIndex;
+        private readonly List<Item> selectedItems = new List<Item>();
         int nOfQuestions;
-        int num = 0;
+        
 
         private Random random = new Random();
         public Form1()
         {
             InitializeComponent();
+            lblTime.Text = TimeSpan.FromSeconds(timerQuestions.Interval).ToString();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            using (var settingForm = new Form2())
-            {
-                if (DialogResult.Cancel == settingForm.ShowDialog())
-                {
-                    Close();
-                    return;
-                }
-            }
-
             LoadFolders();
             SettingsApply();
         }
@@ -48,7 +41,7 @@ namespace Quickzy
         {
             TimeSpan maxDuration;
 
-            string settingsPath = @"..\Quickzy_Prog\settings.txt";
+            string settingsPath = Environment.CurrentDirectory + @"\settings.txt";
             using (var file = File.Open(settingsPath, FileMode.Open, FileAccess.Read, FileShare.Read))
             using (var reader = new StreamReader(file))
             {
@@ -62,7 +55,7 @@ namespace Quickzy
 
         private void LoadFolders()
         {
-            string FoldersDirectory = @"..\Quickzy_Prog\Images";
+            string FoldersDirectory = Environment.CurrentDirectory + @"\Images";
             string folderPath = Directory.EnumerateDirectories(FoldersDirectory).First();
             Folder folder = new Folder
             {
@@ -76,25 +69,8 @@ namespace Quickzy
             LoadItems(folderPath);
             ShuffleItems();
             SelectCandidates();
-            ShuffleCandidates();
             ShowImage();
             UpdateAnswerButtons();
-        }
-
-        private void ShuffleCandidates()
-        {
-            Random rnd = new Random();
-            for (int i = 0; i < 1000; i++)
-            {
-                int index = rnd.Next(selectedIndexes.Length);
-                if (index >= 0 && index < 6)
-                {
-                    int tmp = selectedIndexes[0];
-                    selectedIndexes[0] = selectedIndexes[index];
-                    selectedIndexes[index] = tmp;
-
-                }
-            }
         }
 
         private void ShuffleItems()
@@ -114,51 +90,40 @@ namespace Quickzy
 
         private void ShowImage()
         {
-            pbImage.ImageLocation = items[num].FileName;
+            pbImage.ImageLocation = items[nTotal].FileName;
         }
 
         private void UpdateAnswerButtons()
         {
-            ShuffleCandidates();
-            bAnswer1.Text = items[selectedIndexes[0]].Text;
-            bAnswer2.Text = items[selectedIndexes[1]].Text;
-            bAnswer3.Text = items[selectedIndexes[2]].Text;
-            bAnswer4.Text = items[selectedIndexes[3]].Text;
-            bAnswer5.Text = items[selectedIndexes[4]].Text;
+            bAnswer1.Text = selectedItems[0].Text;
+            bAnswer2.Text = selectedItems[1].Text;
+            bAnswer3.Text = selectedItems[2].Text;
+            bAnswer4.Text = selectedItems[3].Text;
+            bAnswer5.Text = selectedItems[4].Text;
         }
 
         private void SelectCandidates()
         {
-            for (int i = 0; i < selectedIndexes.Length - 1; i++)
+            selectedItems.Clear();
+            selectedItems.Add(items[nTotal]);
+            for (int i = 1; i < numberOfAltenativeAnswers; i++)
             {
-                selectedIndexes[i] = FindNextSelectedIndex(i);
-            }
-            int correctIndexInSelectedIndexes = random.Next(0, selectedIndexes.Length);
-            correctItemIndex = selectedIndexes[correctIndexInSelectedIndexes];
-            selectedIndexes[4] = num;
-        }
-
-        private int FindNextSelectedIndex(int i)
-        {
-            int choosingRandomCandidate;
-            bool alreadyChoosen;
-            do
-            {
-                alreadyChoosen = false;
-                choosingRandomCandidate = random.Next(0, items.Count);
-                for (int j = 0; j < i; j++)         // Выбирание случайных кандидатов и проверка - не одинаковы ли они
+                int candidateItemIndex = random.Next(0, items.Count);
+                while (selectedItems.Contains(items[candidateItemIndex])) 
                 {
-                    if (selectedIndexes[j] == choosingRandomCandidate)
-                    {
-                        if (items[num].Text != items[choosingRandomCandidate].Text)
-                        {
-                            alreadyChoosen = true;
-                            break;
-                        }
-                    }
+                    candidateItemIndex = random.Next(0, items.Count);
                 }
-            } while (alreadyChoosen);
-            return choosingRandomCandidate;
+                selectedItems.Add(items[candidateItemIndex]);
+            }
+
+            for (int i = 0; i < 100; i++)
+            {
+                int first = random.Next(0, selectedItems.Count);
+                int second = random.Next(0, selectedItems.Count);
+                Item temp = selectedItems[first];
+                selectedItems[first] = selectedItems[second];
+                selectedItems[second] = temp;
+            }
         }
 
         private void LoadItems(string folderPath)
@@ -182,50 +147,37 @@ namespace Quickzy
 
         private void bAnswer1_Click(object sender, EventArgs e)
         {
-            Refreshing(0);
+            CompleteAnswer(selectedItems[0]);
         }
 
         private void bAnswer2_Click(object sender, EventArgs e)
         {
-            Refreshing(1);
+            CompleteAnswer(selectedItems[1]);
         }
 
         private void bAnswer3_Click(object sender, EventArgs e)
         {
-            Refreshing(2);
+            CompleteAnswer(selectedItems[2]);
         }
 
-        private void Refreshing(int answer)
+        private void bAnswer4_Click(object sender, EventArgs e)
         {
-            if (items[num].Text == items[selectedIndexes[answer]].Text)
-            {
-                num++;
-                if (num == 5)
-                {
-                    num = 0;
-                    ShuffleItems();
-                }
-                nTotal++;
-                nCorrect++;
-                SelectCandidates();
-                ShowImage();
-                UpdateAnswerButtons();
+            CompleteAnswer(selectedItems[3]);
+        }
 
-            }
-            else
+        private void bAnswer5_Click(object sender, EventArgs e)
+        {
+            CompleteAnswer(selectedItems[4]);
+        }
+
+        private void CompleteAnswer(Item answer)
+        {
+            if (items[nTotal].Text == answer.Text)
             {
-                num++;
-                if (num == 5)
-                {
-                    num = 0;
-                    ShuffleItems();
-                }
-                nTotal++;
-                SelectCandidates();
-                ShowImage();
-                UpdateAnswerButtons();
+                nCorrect++;
+                lblCorrectAnswers.Text = nCorrect.ToString();
             }
-            lblCorrectAnswers.Text = nCorrect.ToString();
+            nTotal++;
             lblTotalAnswers.Text = nTotal.ToString();
 
             if (nOfQuestions == nTotal)
@@ -234,12 +186,18 @@ namespace Quickzy
                 lblResultTotal.Text = lblTotalAnswers.Text;
                 pnlQuestions.Visible = false;
             }
+            else 
+            {
+                SelectCandidates();
+                ShowImage();
+                UpdateAnswerButtons();
+            }
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
-            string tempFolder = @"..\Quickzy_Prog\Images";
-            string tempFile = @"..\Quickzy_Prog\settings.txt";
+            string tempFolder = Environment.CurrentDirectory + @"\Images";
+            string tempFile = Environment.CurrentDirectory + @"\settings.txt";
             foreach (string folder in Directory.EnumerateDirectories(tempFolder))
             {
                 Directory.Delete(folder, true);
@@ -252,16 +210,6 @@ namespace Quickzy
             lblResultCorrect.Text = lblCorrectAnswers.Text;
             lblResultTotal.Text = lblTotalAnswers.Text;
             pnlQuestions.Visible = false;
-        }
-
-        private void bAnswer4_Click(object sender, EventArgs e)
-        {
-            Refreshing(3);
-        }
-
-        private void bAnswer5_Click(object sender, EventArgs e)
-        {
-            Refreshing(4);
         }
 
 
