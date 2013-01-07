@@ -40,18 +40,20 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.pbImage = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.bAnswer5 = new System.Windows.Forms.Button();
+            this.bAnswer4 = new System.Windows.Forms.Button();
             this.cbFolder = new System.Windows.Forms.ComboBox();
             this.bAnswer3 = new System.Windows.Forms.Button();
             this.bAnswer2 = new System.Windows.Forms.Button();
             this.bAnswer1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.pnlResults = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.lblResultCorrect = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.lblResultTotal = new System.Windows.Forms.Label();
-            this.bAnswer4 = new System.Windows.Forms.Button();
-            this.bAnswer5 = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.lblResultCorrect = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lblTime = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip1.SuspendLayout();
             this.pnlQuestions.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -66,7 +68,9 @@
             this.toolStripStatusLabel1,
             this.lblCorrectAnswers,
             this.toolStripStatusLabel2,
-            this.lblTotalAnswers});
+            this.lblTotalAnswers,
+            this.toolStripStatusLabel3,
+            this.lblTime});
             this.statusStrip1.Location = new System.Drawing.Point(0, 440);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(857, 22);
@@ -77,8 +81,8 @@
             // 
             this.toolStripStatusLabel1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(100, 17);
-            this.toolStripStatusLabel1.Text = "Correct answers:";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(130, 17);
+            this.toolStripStatusLabel1.Text = "Правильных ответов";
             // 
             // lblCorrectAnswers
             // 
@@ -89,8 +93,8 @@
             // toolStripStatusLabel2
             // 
             this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(18, 17);
-            this.toolStripStatusLabel2.Text = "of";
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(19, 17);
+            this.toolStripStatusLabel2.Text = "из";
             // 
             // lblTotalAnswers
             // 
@@ -154,10 +158,33 @@
             this.panel2.Size = new System.Drawing.Size(200, 440);
             this.panel2.TabIndex = 5;
             // 
+            // bAnswer5
+            // 
+            this.bAnswer5.Location = new System.Drawing.Point(28, 216);
+            this.bAnswer5.Name = "bAnswer5";
+            this.bAnswer5.Size = new System.Drawing.Size(138, 25);
+            this.bAnswer5.TabIndex = 12;
+            this.bAnswer5.TabStop = false;
+            this.bAnswer5.Text = "TV";
+            this.bAnswer5.UseVisualStyleBackColor = true;
+            this.bAnswer5.Click += new System.EventHandler(this.bAnswer5_Click);
+            // 
+            // bAnswer4
+            // 
+            this.bAnswer4.Location = new System.Drawing.Point(28, 185);
+            this.bAnswer4.Name = "bAnswer4";
+            this.bAnswer4.Size = new System.Drawing.Size(138, 25);
+            this.bAnswer4.TabIndex = 11;
+            this.bAnswer4.TabStop = false;
+            this.bAnswer4.Text = "TV";
+            this.bAnswer4.UseVisualStyleBackColor = true;
+            this.bAnswer4.Click += new System.EventHandler(this.bAnswer4_Click);
+            // 
             // cbFolder
             // 
             this.cbFolder.Dock = System.Windows.Forms.DockStyle.Top;
             this.cbFolder.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbFolder.Enabled = false;
             this.cbFolder.Location = new System.Drawing.Point(0, 0);
             this.cbFolder.Name = "cbFolder";
             this.cbFolder.Size = new System.Drawing.Size(198, 21);
@@ -218,29 +245,17 @@
             this.pnlResults.Size = new System.Drawing.Size(857, 440);
             this.pnlResults.TabIndex = 5;
             // 
-            // label2
+            // lblResultTotal
             // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.lblResultTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(280, 167);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(82, 13);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Ваш pезультат";
-            // 
-            // lblResultCorrect
-            // 
-            this.lblResultCorrect.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblResultCorrect.AutoSize = true;
-            this.lblResultCorrect.Location = new System.Drawing.Point(369, 167);
-            this.lblResultCorrect.Name = "lblResultCorrect";
-            this.lblResultCorrect.Size = new System.Drawing.Size(59, 13);
-            this.lblResultCorrect.TabIndex = 1;
-            this.lblResultCorrect.Text = "CORRECT";
+            this.lblResultTotal.AutoSize = true;
+            this.lblResultTotal.Location = new System.Drawing.Point(523, 167);
+            this.lblResultTotal.Name = "lblResultTotal";
+            this.lblResultTotal.Size = new System.Drawing.Size(42, 13);
+            this.lblResultTotal.TabIndex = 3;
+            this.lblResultTotal.Text = "TOTAL";
             // 
             // label4
             // 
@@ -254,39 +269,42 @@
             this.label4.TabIndex = 2;
             this.label4.Text = "правильных из";
             // 
-            // lblResultTotal
+            // lblResultCorrect
             // 
-            this.lblResultTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.lblResultCorrect.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblResultTotal.AutoSize = true;
-            this.lblResultTotal.Location = new System.Drawing.Point(523, 167);
-            this.lblResultTotal.Name = "lblResultTotal";
-            this.lblResultTotal.Size = new System.Drawing.Size(42, 13);
-            this.lblResultTotal.TabIndex = 3;
-            this.lblResultTotal.Text = "TOTAL";
+            this.lblResultCorrect.AutoSize = true;
+            this.lblResultCorrect.Location = new System.Drawing.Point(369, 167);
+            this.lblResultCorrect.Name = "lblResultCorrect";
+            this.lblResultCorrect.Size = new System.Drawing.Size(59, 13);
+            this.lblResultCorrect.TabIndex = 1;
+            this.lblResultCorrect.Text = "CORRECT";
             // 
-            // bAnswer4
+            // label2
             // 
-            this.bAnswer4.Location = new System.Drawing.Point(28, 185);
-            this.bAnswer4.Name = "bAnswer4";
-            this.bAnswer4.Size = new System.Drawing.Size(138, 25);
-            this.bAnswer4.TabIndex = 11;
-            this.bAnswer4.TabStop = false;
-            this.bAnswer4.Text = "TV";
-            this.bAnswer4.UseVisualStyleBackColor = true;
-            this.bAnswer4.Click += new System.EventHandler(this.bAnswer4_Click);
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(280, 167);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(82, 13);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Ваш pезультат";
             // 
-            // bAnswer5
+            // toolStripStatusLabel3
             // 
-            this.bAnswer5.Location = new System.Drawing.Point(28, 216);
-            this.bAnswer5.Name = "bAnswer5";
-            this.bAnswer5.Size = new System.Drawing.Size(138, 25);
-            this.bAnswer5.TabIndex = 12;
-            this.bAnswer5.TabStop = false;
-            this.bAnswer5.Text = "TV";
-            this.bAnswer5.UseVisualStyleBackColor = true;
-            this.bAnswer5.Click += new System.EventHandler(this.bAnswer5_Click);
+            this.toolStripStatusLabel3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
+            this.toolStripStatusLabel3.Size = new System.Drawing.Size(48, 17);
+            this.toolStripStatusLabel3.Text = "Время:";
+            // 
+            // lblTime
+            // 
+            this.lblTime.Name = "lblTime";
+            this.lblTime.Size = new System.Drawing.Size(13, 17);
+            this.lblTime.Text = "0";
             // 
             // Form1
             // 
@@ -341,6 +359,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button bAnswer5;
         private System.Windows.Forms.Button bAnswer4;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
+        private System.Windows.Forms.ToolStripStatusLabel lblTime;
 
     }
 }

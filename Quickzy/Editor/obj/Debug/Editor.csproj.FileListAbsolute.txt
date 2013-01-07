@@ -1,0 +1,8 @@
+G:\CSharpLab\Quickzy\SVN\trunk\Quickzy\Editor\obj\Debug\Editor.csprojResolveAssemblyReference.cache
+G:\CSharpLab\Quickzy\SVN\trunk\Quickzy\Editor\obj\Debug\Editor.Properties.Resources.resources
+G:\CSharpLab\Quickzy\SVN\trunk\Quickzy\Editor\obj\Debug\Editor.csproj.GenerateResource.Cache
+G:\CSharpLab\Quickzy\SVN\trunk\Quickzy\Bin\Editor.exe
+G:\CSharpLab\Quickzy\SVN\trunk\Quickzy\Bin\Editor.pdb
+G:\CSharpLab\Quickzy\SVN\trunk\Quickzy\Editor\obj\Debug\Editor.Form2.resources
+G:\CSharpLab\Quickzy\SVN\trunk\Quickzy\Editor\obj\Debug\Editor.exe
+G:\CSharpLab\Quickzy\SVN\trunk\Quickzy\Editor\obj\Debug\Editor.pdb

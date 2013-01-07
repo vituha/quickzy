@@ -1,0 +1,11 @@
+G:\CSharpLab\Quickzy\SVN\trunk\Quickzy\Quickzy\bin\Debug\Quickzy.exe
+G:\CSharpLab\Quickzy\SVN\trunk\Quickzy\Quickzy\bin\Debug\Quickzy.pdb
+G:\CSharpLab\Quickzy\SVN\trunk\Quickzy\Quickzy\obj\x86\Debug\Quickzy.Form1.resources
+G:\CSharpLab\Quickzy\SVN\trunk\Quickzy\Quickzy\obj\x86\Debug\Quickzy.Properties.Resources.resources
+G:\CSharpLab\Quickzy\SVN\trunk\Quickzy\Quickzy\obj\x86\Debug\Quickzy.exe
+G:\CSharpLab\Quickzy\SVN\trunk\Quickzy\Quickzy\obj\x86\Debug\Quickzy.pdb
+G:\CSharpLab\Quickzy\SVN\trunk\Quickzy\Bin\Quickzy.exe
+G:\CSharpLab\Quickzy\SVN\trunk\Quickzy\Bin\Quickzy.pdb
+G:\CSharpLab\Quickzy\SVN\trunk\Quickzy\Quickzy\obj\x86\Debug\Quickzy.csproj.GenerateResource.Cache
+G:\CSharpLab\Quickzy\SVN\trunk\Quickzy\Quickzy_Prog\Quickzy.exe
+G:\CSharpLab\Quickzy\SVN\trunk\Quickzy\Quickzy_Prog\Quickzy.pdb
