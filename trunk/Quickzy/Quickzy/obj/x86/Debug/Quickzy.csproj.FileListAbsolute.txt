@@ -9,3 +9,4 @@ G:\CSharpLab\Quickzy\SVN\trunk\Quickzy\Bin\Quickzy.pdb
 G:\CSharpLab\Quickzy\SVN\trunk\Quickzy\Quickzy\obj\x86\Debug\Quickzy.csproj.GenerateResource.Cache
 G:\CSharpLab\Quickzy\SVN\trunk\Quickzy\Quickzy_Prog\Quickzy.exe
 G:\CSharpLab\Quickzy\SVN\trunk\Quickzy\Quickzy_Prog\Quickzy.pdb
+G:\CSharpLab\Quickzy\SVN\trunk\Quickzy\Quickzy\obj\x86\Debug\Quickzy.csprojResolveAssemblyReference.cache

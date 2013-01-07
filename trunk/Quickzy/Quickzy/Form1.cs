@@ -28,7 +28,6 @@ namespace Quickzy
         public Form1()
         {
             InitializeComponent();
-            lblTime.Text = TimeSpan.FromSeconds(timerQuestions.Interval).ToString();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -49,10 +48,10 @@ namespace Quickzy
                 maxDuration = TimeSpan.FromSeconds(int.Parse(reader.ReadLine()));
                 file.Close();
             }
-            timerQuestions.Interval = (int)maxDuration.TotalMilliseconds;
+            lblTime.Text = maxDuration.TotalSeconds.ToString();
+            timerQuestions.Interval = 1000;
             timerQuestions.Enabled = true;
         }
-
         private void LoadFolders()
         {
             string FoldersDirectory = Environment.CurrentDirectory + @"\Images";
@@ -137,6 +136,7 @@ namespace Quickzy
                     Text = GetTextFromFileName(fileName)
                 };
                 items.Add(item);
+
             }
         }
 
@@ -207,14 +207,21 @@ namespace Quickzy
 
         private void timerQuestions_Tick(object sender, EventArgs e)
         {
-            lblResultCorrect.Text = lblCorrectAnswers.Text;
-            lblResultTotal.Text = lblTotalAnswers.Text;
-            pnlQuestions.Visible = false;
+            TimeSpan remainingTime = TimeSpan.FromSeconds(int.Parse(lblTime.Text));
+            TimeSpan interval = TimeSpan.FromMilliseconds(timerQuestions.Interval);
+            remainingTime = remainingTime - interval;
+            if (remainingTime.TotalSeconds == 0)
+            {
+                lblResultCorrect.Text = lblCorrectAnswers.Text;
+                lblResultTotal.Text = lblTotalAnswers.Text;
+                pnlQuestions.Visible = false;
+            }
+            else
+            {
+                timerQuestions.Enabled = true;
+                lblTime.Text = remainingTime.TotalSeconds.ToString();
+            }
         }
-
-
-
-
     }
 }
 
